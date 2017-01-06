@@ -20,9 +20,11 @@ A have a variation of LeNet:
 
 I used the Adam optimizer.
 
-I wish I could justify this architecture, but it is the result of many hours of trial and error. I started with a model I had in project2 - 3 conv layers + 3 fully-connected layers with droupout. Messing with the sizes of these layers got me close to driving good on the first track. But the car kept flying of the track on the last turn. Then I just randomly switched dropout to convolutional layers and magically everything worked. But still the driving was "not stable" enough. Adding two more conv layers helped.
+I wish I could justify this architecture, but it is the result of many hours of trial and error. I started with a model I had in project2 - 3 conv layers + 3 fully-connected layers with droupout. Messing with the sizes of these layers got me close to driving good on the first track. But the car kept flying off the track on a couple of turns close to end of the track. Then I just randomly switched dropout from fully-connected to convolutional layers and magically everything worked. But still the driving was "not stable" enough. Adding two more conv layers helped.
 
-##### Surprises
+Nvidia came up with a really cool interpretation of this architecture applied to steering angle prediction - convolutional layers act as feature extractors, and  fully-connected layers act as a "controller for steering". This analogy of course is not strict is any sense, but still I find it usefull.
+
+##### Surprises (things I didn't expect to happen)
 
 I experimented with Batch Normalization, but it totally didn't work in this problem - the car always went off the track. Also, as I said above, Dropout in fully-connected layers somehow broke my model, so I left Dropout only in convolutional layers. L2 regularization also didn't work.
 
@@ -48,7 +50,7 @@ The real meat in this project was data augmentation. My pipeline looks the follo
  - then I change image brightness by a small random factor and rescale image to 64x100
  ![alt text](images/img5.png)
 
-### Overfitting / Validation
+### Overfitting / Model Evaluation
 
 Now this one is very interesting. This project is really unique with respect to how you approach machine learning problems. Typically you fix some metric (e.g accuracy) and carefully control overfitting with your validation set. But in this project the only real metric is visually checking if your car made it on the track! Given two models, the one with the lower MSE is not necessarily the better model. With this in mind it is really painful to properly validate models in this project, since you can't trust your metrics. Following this logic I decided not to use validation set in this problem.
 
