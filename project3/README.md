@@ -20,9 +20,19 @@ A have a variation of LeNet:
 
 I used the Adam optimizer.
 
-I experimented with Batch Normalization, but it totally spoiled everything in this problem. Also Dropout in fully-connected layers somehow broke my model, so I left Dropout only in convolutional layers.
+I wish I could justify this architecture, but it is the result of many hours of trial and error. I started with a model I had in project2 - 3 conv layers + 3 fully-connected layers with droupout. Messing with the sizes of these layers got me close to driving good on the first track. But the car kept flying of the track on the last turn. Then I just randomly switched dropout to convolutional layers and magically everything worked. But still the driving was "not stable" enough. Adding two more conv layers helped.
+
+##### Surprises
+
+I experimented with Batch Normalization, but it totally didn't work in this problem - the car always went off the track. Also, as I said above, Dropout in fully-connected layers somehow broke my model, so I left Dropout only in convolutional layers. L2 regularization also didn't work.
+
+Also I found that you don't want to train your model for too long - everything beyond 10 epochs made the car go off the track (even though MSE continued decreasing).
+
+##### Alternative architectures tried
 
 A also experimented with VGG like architectures, it gave pretty much the same performance, but the model size became much bigger, so I decided to stick with LeNet.
+
+I also tried both the [Nvidia pipeline](https://arxiv.org/abs/1604.07316) and the [comma.ai pipeline](https://github.com/commaai/research/blob/master/train_steering_model.py#L27), but my LeNet variation worked better for me for some reason.
 
 ### Data preprocessing / augmentation
 
