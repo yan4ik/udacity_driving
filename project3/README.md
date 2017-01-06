@@ -32,7 +32,7 @@ Also I found that you don't want to train your model for too long - everything b
 
 ##### Alternative architectures tried
 
-A also experimented with VGG like architectures, it gave pretty much the same performance, but the model size became much bigger, so I decided to stick with LeNet.
+I experimented with VGG-like architectures (basically doubling every conv layer before the MaxPool), it gave pretty much the same performance, but the model size became much bigger, so I decided to stick with LeNet.
 
 I also tried both the [Nvidia pipeline](https://arxiv.org/abs/1604.07316) and the [comma.ai pipeline](https://github.com/commaai/research/blob/master/train_steering_model.py#L27), but my LeNet variation worked better for me for some reason.
 
