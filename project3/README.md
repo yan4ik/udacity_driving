@@ -29,10 +29,14 @@ A also experimented with VGG like architectures, it gave pretty much the same pe
 The real meat in this project was data augmentation. My pipeline looks the following:
  - for each image I randomly pick which camera to use (center, left, right)
  ![alt text](images/img1.png)
- - first I crop the image to throw away everything above the road
+ - first I crop the image to throw away everything above the road and cut the car
+ ![alt text](images/img2.png)
  - then a randomly shift the image a little (adjusting the steering angle appropriately)
+ ![alt text](images/img3.png)
  - then with some probability I flip the image (changing steering angles sign)
- - then I randomly change image brightness
+ ![alt text](images/img4.png)
+ - then I change image brightness by a small random factor and rescale image to 64x100
+ ![alt text](images/img5.png)
 
 ### Overfitting / Validation
 
