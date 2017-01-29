@@ -5,6 +5,7 @@
 [image1]: ./images/undistort.example.png "Undistorted"
 [image2]: ./images/transformed.example.png "Transformed"
 [image3]: ./images/thresholded.example.png "Thresholded"
+[image4]: ./images/fitted.example.png "Fitted"
 
 Here I will consider the rubric points individually and describe how I addressed each point in my implementation.
 
@@ -38,9 +39,16 @@ The code is located in cell 11. I use simple color masks - one white and one yel
 
 This simple strategy gives pretty good results, slightly better than what I tried to achieve with gradient thresholding. In my case gradients gave a lot of noise, so I decided to stick with color masks.
 
-Here's one example:
+Here's one example of my approach:
 
 ![alt text][image3]
 
 More examples can be found in cell 12.
 
+###Curve fitting
+
+The code is located in cell 13. First, I split the image in two halves, and work with them independently. I use `np.polyfit` to fit a quadratic function. The final lines are drawn as suggested in the Udacity tutorial.
+
+Here's one example of what I got:
+
+![alt text][image4]
