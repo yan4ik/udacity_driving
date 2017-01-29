@@ -16,7 +16,7 @@ All the code is located in "adv_lane_detect.ipynb".
 
 ###Camera calibrtaion
 
-The code is located in cells 5-6. It's an exact copy of a tutorial given in the lectures - `cv2.findChessboardCorners`, `cv2.calibrateCamera` and `cv2.undistort` does all the job for us.
+The code is located in cells 5-6. It's an exact copy of a tutorial given in the lectures. We are given several photos of a chessboard, where we can find the corners using opencv. And we also know how an undistorted chessboard look like, and where the corners must be there. Using this information we can create a mapping between the distorted points and undistorted points, and this will help us calibrate our camera. `cv2.findChessboardCorners`, `cv2.calibrateCamera` and `cv2.undistort` does all the dirty job for us.
 
 Here's one example of what I got:
 
@@ -26,7 +26,7 @@ More examples can be found in cell 7 in the notebook. There I tested my distorti
 
 ###Perspective Transform
 
-The code is located in cell 9. Again, nothing very impressive on my side - `cv2.getPerspectiveTransform` and `cv2.warpPerspective` are my friends here. A little nontrivial was to carefully adjust the coordinates of source and destination points. But after some trial and error I managed to get it right.
+The code is located in cell 9. The basic idea is to choose "source" points on the original image, and their future "destination" coordinates in the transformed image. Again, nothing very impressive on my side - `cv2.getPerspectiveTransform` and `cv2.warpPerspective` are my friends here. A little nontrivial was to carefully adjust the coordinates of source and destination points. But after some trial and error I managed to get it right.
 
 Here's one example of my perspective transform:
 
@@ -48,7 +48,7 @@ More examples can be found in cell 12.
 
 ###Curve fitting
 
-The code is located in cell 13. First, I split the image in two halves, and work with them independently. I use `np.polyfit` to fit a quadratic function. The final lines are drawn as suggested in the Udacity tutorial.
+The code is located in cell 13. First, I split the image in two halves, and work with them independently. I use `np.polyfit` to fit a quadratic function.
 
 Here's one example of what I got:
 
@@ -62,11 +62,11 @@ My final result image looks something like this:
 
 ![alt text][image5]
 
-Highlighting is done exactly as suggested by Udacity tutorial. The code is in cell 15. More example on test images can be found in cell 16.
+Highlighting is done exactly as suggested by Udacity tutorial - we construct a polygon from our fitted curves and project it back to the original image. The code is in cell 15. More example on test images can be found in cell 16.
 
 ###Radius of curvature and position of vehicle
 
-Radius of curvature is calculated exactly as in Udacity tutorials. Code is in cell 19. On video it oscillates pretty wildly, but on average is pretty close to 1km, which seems reasonable.
+Radius of curvature is calculated by the formula given in the tutorials. Code is in cell 19. On video it oscillates pretty wildly, but on average is pretty close to 1km, which seems reasonable.
 
 The position of vehicle is calculated as follows - we look at the most bottom of our highlighted region and search for the leftmost and rightmost points. We assume that if car is exactly in the center of the road then these points have identical offsets from the borders of the image. So we measure the shift of these points from the center - right is positive, left is negative. We also don't forget to calibrate our measurements from pixel space to real world space. The code is in cell 15. On the video my method gives reasonable results - when the car drives closer to the left yellow line, the shift decreases.
 
