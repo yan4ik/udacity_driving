@@ -68,7 +68,7 @@ Highlighting is done exactly as suggested by Udacity tutorial. The code is in ce
 
 Radius of curvature is calculated exactly as in Udacity tutorials. Code is in cell 19. On video it oscillates pretty wildly, but on average is pretty close to 1km, which seems reasonable.
 
-The position of vehicle is calculated as follows - we look at the most bottom of our highlited region and search for the leftmost and rightmost points. We assume that if car is exactly in the center of the road then these points have identical offsets from the borders of the image. So we measure the shift of these points from the center - right is positive, left is negative. We also don't forget to calibrate our measurements from pixel space to real world space. The code is in cell 15. On the video my method gives reasonable results - when the car drives closer to the left yellow line, the shift decreases.
+The position of vehicle is calculated as follows - we look at the most bottom of our highlighted region and search for the leftmost and rightmost points. We assume that if car is exactly in the center of the road then these points have identical offsets from the borders of the image. So we measure the shift of these points from the center - right is positive, left is negative. We also don't forget to calibrate our measurements from pixel space to real world space. The code is in cell 15. On the video my method gives reasonable results - when the car drives closer to the left yellow line, the shift decreases.
 
 ---
 
@@ -85,5 +85,5 @@ I used simple averaging over the last 10 frames. When I can't find lines on the 
 
 What further directions I find most promising:
 * a principled way of dealing with brightness - shadows and bright sun are totally killing my approach right now. Simple color masking totally fails here.
-* during the video lane lines should be updated using bayesian inference - previous frame gives us prior distribution, current frame gives us likelihoodand we need to figure out the posterior. In this framework the whole process will be much more robust.
+* during the video lane lines should be updated using bayesian inference - previous frame gives us prior distribution, current frame gives us likelihood and we need to figure out the posterior. In this framework the whole process will be much more robust.
 * the thing that puzzles me the most is how to deal with situation which occures near 00:40 on the harder challenge video. In this episode the right lane totally dissapears, but the "right lane" from the opposite lane clearly comes into picture. This situation are really dangerous - the car can switch to opposite lane, if we're not carefull about it.
