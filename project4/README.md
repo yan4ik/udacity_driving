@@ -6,6 +6,7 @@
 [image2]: ./images/transformed.example.png "Transformed"
 [image3]: ./images/thresholded.example.png "Thresholded"
 [image4]: ./images/fitted.example.png "Fitted"
+[image5]: ./images/final.example.png "Final"
 
 Here I will consider the rubric points individually and describe how I addressed each point in my implementation.
 
@@ -52,3 +53,13 @@ The code is located in cell 13. First, I split the image in two halves, and work
 Here's one example of what I got:
 
 ![alt text][image4]
+
+More examples can be found in cell 13.
+
+###Final Result
+
+My final result image looks something like this:
+
+![alt text][image5]
+
+Highlighting is done exactly as suggested by Udacity tutorial. The code is in cell 14. More example on test images can be found in cell 15.
