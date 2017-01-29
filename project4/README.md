@@ -3,6 +3,7 @@
 [//]: # (Image References)
 
 [image1]: ./images/undistort.example.png "Undistorted"
+[image2]: ./images/transformed.example.png "Transformed"
 
 Here I will consider the rubric points individually and describe how I addressed each point in my implementation.
 
@@ -15,6 +16,17 @@ All the code is located in "adv_lane_detect.ipynb".
 The code is located in cells 5-6. It's an exact copy of a tutorial given in the lectures - `cv2.findChessboardCorners`, `cv2.calibrateCamera` and `cv2.undistort` does all the job for us.
 
 Here's one example of what I got:
+
 ![alt text][image1]
 
-More examples can be found in cell 7 in the notebook. There I tested my distortion correction on images where opencv failed to detect corners for some reason.
+More examples can be found in cell 7 in the notebook. There I tested my distortion correction on images where opencv failed to detect corners for some reason. In cell 8 you can find my distortion correction applied to test images.
+
+###Perspective Transform
+
+The code is located in cell 9. Again, nothing very impressive on my side - `cv2.getPerspectiveTransform` and `cv2.warpPerspective` are my friends here. A little bit nontrivial was to carefully adjust the coordinates of source and destination points. But after some trial and error I managed to get it right.
+
+Here's one example of my perspective transform:
+
+![alt text][image2]
+
+All examples of my perspective transform can be found in cell 10.
