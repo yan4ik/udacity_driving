@@ -4,6 +4,7 @@
 
 [image1]: ./images/undistort.example.png "Undistorted"
 [image2]: ./images/transformed.example.png "Transformed"
+[image3]: ./images/thresholded.example.png "Thresholded"
 
 Here I will consider the rubric points individually and describe how I addressed each point in my implementation.
 
@@ -23,10 +24,23 @@ More examples can be found in cell 7 in the notebook. There I tested my distorti
 
 ###Perspective Transform
 
-The code is located in cell 9. Again, nothing very impressive on my side - `cv2.getPerspectiveTransform` and `cv2.warpPerspective` are my friends here. A little bit nontrivial was to carefully adjust the coordinates of source and destination points. But after some trial and error I managed to get it right.
+The code is located in cell 9. Again, nothing very impressive on my side - `cv2.getPerspectiveTransform` and `cv2.warpPerspective` are my friends here. A little nontrivial was to carefully adjust the coordinates of source and destination points. But after some trial and error I managed to get it right.
 
 Here's one example of my perspective transform:
 
 ![alt text][image2]
 
-All examples of my perspective transform can be found in cell 10.
+More examples can be found in cell 10.
+
+###Thresholding
+
+The code is located in cell 11. I use simple color masks - one white and one yellow, both applied to a BGR image. White mask is trivial - just take pixels where all channels are high enough. Yellow mask is more tricky to implement, but I ended up with a pretty robust rule - I select pixels with high enough red channel and high enough difference between green and blue channels.
+
+This simple strategy gives pretty good results, slightly better than what I tried to achieve with gradient thresholding. In my case gradients gave a lot of noise, so I decided to stick with color masks.
+
+Here's one example:
+
+![alt text][image3]
+
+More examples can be found in cell 12.
+
