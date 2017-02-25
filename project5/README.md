@@ -64,7 +64,7 @@ X_val /= std_feat
 
 I experimented with a lot of models: Linear SVM, Kernel SVM, Random Forest, Gradient Bossting, ...
 
-I ended up with a pytorch single hidden layer neural network, because it -is cool- gave me the highest validation accuracy (91%). Also, given current tools, neural nets are the most flexible and convenient nonlinear model you can train on a large dataset.
+I ended up with a pytorch single hidden layer neural network, because it ~~is cool~~ gave me the highest validation accuracy (91%). Also, given current tools, neural nets are the most flexible and convenient nonlinear model you can train on a large dataset.
 
 My architecture is the following: 
 ```python
