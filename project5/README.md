@@ -1,14 +1,17 @@
-**Vehicle Detection Project**
+# Vehicle Detection Project
 
 [//]: # (Image References)
-[image1]: ./examples/128x128.jpg
-[image2]: ./examples/75x75.jpg
-[image3]: ./examples/overlap_hell.jpg
-[image4]: ./examples/result.jpg
+
+[image1]: ./examples/128x128.png
+[image2]: ./examples/75x75.png
+[image3]: ./examples/overlap_hell.png
+[image4]: ./examples/result.png
 
 ---
 
 First and most important: [my video result](https://www.youtube.com/watch?v=WbT41thK7dg)
+
+All the code can be found in `vehicle_detection.ipynb`
 
 ### Data
 
@@ -110,7 +113,7 @@ As was suggested in udacity tutorials, we can use a heatmap to nail good boxes. 
 
 As an additional hack, I "reset" active pixels on heatmaps to 1 (`heatmap[heatmap != 0] = 1`). This helps me get more stable boxes.
 
-My final boxes on test images can be found in `examples` directory. Here is one such image:
+My final boxes on test images can be found in `output_images` directory. Here is one such image:
 ![alt text][image4]
 
 # Discussion
