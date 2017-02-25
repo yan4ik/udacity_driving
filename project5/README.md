@@ -113,6 +113,28 @@ As was suggested in udacity tutorials, we can use a heatmap to nail good boxes. 
 
 As an additional hack, I "reset" active pixels on heatmaps to 1 (`heatmap[heatmap != 0] = 1`). This helps me get more stable boxes.
 
+Here is the code for my pipeline:
+```
+def process_image(image):
+    active_windows = get_active_windows(image.astype(np.float) / 255)
+    heat = np.zeros_like(image[:,:,0])
+    heatmap = add_heat(heat, active_windows)
+    heatmap[heatmap <= 2] = 0
+    heatmap[heatmap != 0] = 1
+    d.append(heatmap)
+    
+    heatmap = sum(d)
+    heatmap[heatmap < 7] = 0
+    heatmap[heatmap != 0] = 1
+            
+    labels = label(heatmap)
+    boxes = get_labeled_bboxes(labels)
+    
+    boxed = draw_boxes(image, boxes)
+    
+    return boxed
+```
+
 My final boxes on test images can be found in `output_images` directory. Here is one such image:
 ![alt text][image4]
 
