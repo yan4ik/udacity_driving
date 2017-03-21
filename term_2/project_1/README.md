@@ -106,6 +106,8 @@ rmse:
 
 ### Discussion
 
-We can see that in Dataset 1 both sensors are pretty much on par, and the fused result is the best one. Though we can see that radar is much more accurate in nonlinear segments (with the exception of the lower left segment, where it overshot the ground truth trajectory).
+We can see that in Dataset 1 both sensors are pretty much on par, and the fused result is the best one. Though we can see that radar is much more accurate in nonlinear segments (with the exception of the lower left segment, where it significantly overshot the ground truth trajectory).
 
 But on Dataset 2 we observe that the best result is achieved by a radar sensor alone! The reason may be that the second dataset has much longer nonlinear segments, and hence our laser sensor fails to capture is properly due to its linearity assumptions.
+
+We can also observe that both sensors overshoot nonlinear segments. It seems like this happens because our process model is linear (we assume constant velocity in expecation), which is clearly violated in nonlinear, "turning" segments.
