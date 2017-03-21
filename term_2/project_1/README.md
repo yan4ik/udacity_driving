@@ -30,7 +30,7 @@ Usage instructions: ./ExtendedKF path/to/input.txt output.txt
 
 ### Dataset 1 Results
 
-##### Radar
+#### Radar
 
 ![alt text][image1]
 
@@ -42,7 +42,7 @@ rmse:
 0.581877
 ```
 
-##### Laser
+#### Laser
 
 ![alt text][image2]
 
@@ -54,7 +54,7 @@ rmse:
 0.560902
 ```
 
-##### Fusion (both sensors)
+#### Fusion (both sensors)
 
 ![alt text][image3]
 
@@ -68,7 +68,7 @@ rmse:
 
 ### Dataset 2 Results
 
-##### Radar
+#### Radar
 
 ![alt text][image4]
 
@@ -80,7 +80,7 @@ rmse:
 0.129556
 ```
 
-##### Laser
+#### Laser
 
 ![alt text][image5]
 
@@ -92,7 +92,7 @@ rmse:
 0.833882
 ```
 
-##### Fusion (both sensors)
+#### Fusion (both sensors)
 
 ![alt text][image6]
 
@@ -103,3 +103,9 @@ rmse:
 0.477586
 0.807415
 ```
+
+### Discussion
+
+We can see that in Dataset 1 both sensors are pretty much on par, and the fused result is the best one.
+
+But on Dataset 2 we observe that the best result is achieved by a radar sensor alone! The reason may be that the second dataset has much longer nonlinear segments, and hence our laser sensor fails to capture is properly due to its linearity assumptions.
