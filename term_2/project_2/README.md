@@ -5,7 +5,7 @@
 [image1]: ./images/1.fusion.png
 [image2]: ./images/2.fusion.png
 [image3]: ./images/laser_nis.png
-[image3]: ./images/radar_nis.png
+[image4]: ./images/radar_nis.png
 
 
 Project structure:
