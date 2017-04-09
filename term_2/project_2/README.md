@@ -63,4 +63,5 @@ The implementation was pretty straightforward, with the exception that on Datase
 My model passes needed benchmarks but still can be improved. If we look as NIS graphs for laser and radar data we can see that I underestimate laser noise and overestimate radar noise.
 
 ![alt text][image3]
+
 ![alt text][image4]
