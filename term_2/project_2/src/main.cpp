@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
     Fusion_UKF fusion_ukf;
 
     vector<Vector4d> estimations;
-	vector<Vector4d> ground_truth;
+    vector<Vector4d> ground_truth;
 
     size_t N = measurement_pack_list.size();
     for (size_t i = 0; i < N; ++i ) {
@@ -248,7 +248,7 @@ int main(int argc, char* argv[]) {
                                fusion_ukf.state_(2) * cos(fusion_ukf.state_(3)),
                                fusion_ukf.state_(2) * sin(fusion_ukf.state_(3));
 
-		estimations.push_back(ukf_state_cartesian);
+	    estimations.push_back(ukf_state_cartesian);
 		
         ground_truth.push_back(gt_pack_list[i].data_);
 
@@ -259,13 +259,13 @@ int main(int argc, char* argv[]) {
     cout << "Accuracy - RMSE:" << endl 
          << tools::rmse(estimations, ground_truth) << endl;
 
-  	if (out_file_.is_open()) {
-    	out_file_.close();
-  	}
+    if (out_file_.is_open()) {
+        out_file_.close();
+    }
 
-  	if (in_file_.is_open()) {
-    	in_file_.close();
-  	}  
+    if (in_file_.is_open()) {
+        in_file_.close();
+    }  
 
     return 0;
 }

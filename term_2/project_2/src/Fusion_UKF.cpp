@@ -176,18 +176,18 @@ void Fusion_UKF::ctrv_sigma_points_prediction(const MatrixXd& sigma_points,
                                               double dt,
                                               MatrixXd* sigma_images) {
 
-	double px = 0;
-	double py = 0;
-	double v = 0;
+    double px = 0;
+    double py = 0;
+    double v = 0;
     double yaw = 0;
     double yaw_d = 0;
     double nu_a = 0;
     double nu_yaw_dd = 0;
 
     // predicted state values
-	double px_predicted = 0;
-	double py_predicted = 0;
-	double v_predicted = 0;
+    double px_predicted = 0;
+    double py_predicted = 0;
+    double v_predicted = 0;
     double yaw_predicted = 0;
     double yaw_d_predicted = 0;
     double nu_a_predicted = 0;
@@ -248,18 +248,18 @@ void Fusion_UKF::update_state_and_covariance(const MatrixXd& sigma_images) {
     //predicted state covariance matrix
     covariance_.fill(0.0);
 
-  	for (int i = 0; i < sigma_images.cols(); ++i) {
+    for (int i = 0; i < sigma_images.cols(); ++i) {
 
-    	// state difference
-    	VectorXd x_diff = sigma_images.col(i) - state_;
+        // state difference
+        VectorXd x_diff = sigma_images.col(i) - state_;
     
-		// angle normalization
-    	while (x_diff(3) >  M_PI) x_diff(3) -= 2. * M_PI;
-    	while (x_diff(3) < -M_PI) x_diff(3) += 2. * M_PI;
+	    // angle normalization
+        while (x_diff(3) >  M_PI) x_diff(3) -= 2. * M_PI;
+        while (x_diff(3) < -M_PI) x_diff(3) += 2. * M_PI;
 
-    	covariance_ += weights(i) * x_diff * x_diff.transpose();
+        covariance_ += weights(i) * x_diff * x_diff.transpose();
 
-  	}
+    }
 
 }
 
@@ -314,13 +314,13 @@ void Fusion_UKF::update_radar(const VectorXd& radar_data,
 
     // transform sigma points into measurement space
 
-	double px = 0;
-	double py = 0;
-	double v = 0;
-	double yaw = 0;
+    double px = 0;
+    double py = 0;
+    double v = 0;
+    double yaw = 0;
 
-	double vx = 0;
-	double vy = 0;
+    double vx = 0;
+    double vy = 0;
 
     for (int i = 0; i < sigma_images_images.cols(); ++i) {
 
@@ -340,11 +340,11 @@ void Fusion_UKF::update_radar(const VectorXd& radar_data,
     	sigma_images_images(0, i) = sqrt(pow(px, 2) + pow(py, 2));
     	sigma_images_images(1, i) = atan2(py, px);
     	sigma_images_images(2, i) = (px * vx + py * vy ) / sqrt(pow(px, 2) + pow(py, 2));
-  	}    
+    }    
 
     // predicted measurement mean
 	
-	VectorXd z_predicted = VectorXd(radar_data.size());
+    VectorXd z_predicted = VectorXd(radar_data.size());
     z_predicted.fill(0.0);
     
     for (int i = 0; i < sigma_images_images.cols(); ++i) {
@@ -355,51 +355,51 @@ void Fusion_UKF::update_radar(const VectorXd& radar_data,
 
     // predicted measurement covariance matrix
 
-	MatrixXd S = MatrixXd(radar_data.size(), radar_data.size());
+    MatrixXd S = MatrixXd(radar_data.size(), radar_data.size());
     S.fill(0.0);
 
-  	for (int i = 0; i < sigma_images_images.cols(); ++i) {
+    for (int i = 0; i < sigma_images_images.cols(); ++i) {
 
-    	// measurement difference
-    	VectorXd z_diff = sigma_images_images.col(i) - z_predicted;
+        // measurement difference
+        VectorXd z_diff = sigma_images_images.col(i) - z_predicted;
     
-		// angle normalization
-    	while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
-    	while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
+	    // angle normalization
+        while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
+        while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
 
-    	S += weights(i) * z_diff * z_diff.transpose();
+        S += weights(i) * z_diff * z_diff.transpose();
 
-  	}
+    }
 
-	S += radar_covariance_;
+    S += radar_covariance_;
     
-	// measurement update
+    // measurement update
 
-	MatrixXd Tc = MatrixXd(state_.rows(), radar_data.rows());
-	Tc.fill(0.0);
+    MatrixXd Tc = MatrixXd(state_.rows(), radar_data.rows());
+    Tc.fill(0.0);
 	
-	for (int i = 0; i < sigma_images_images.cols(); ++i) {
+    for (int i = 0; i < sigma_images_images.cols(); ++i) {
 
-		VectorXd z_diff = sigma_images_images.col(i) - z_predicted;
-		while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
-		while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
+	    VectorXd z_diff = sigma_images_images.col(i) - z_predicted;
+	    while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
+	    while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
 
-		VectorXd x_diff = sigma_images.col(i) - state_;
-		while (x_diff(3) >  M_PI) x_diff(3) -= 2. * M_PI;
-		while (x_diff(3) < -M_PI) x_diff(3) += 2. * M_PI;
+	    VectorXd x_diff = sigma_images.col(i) - state_;
+	    while (x_diff(3) >  M_PI) x_diff(3) -= 2. * M_PI;
+	    while (x_diff(3) < -M_PI) x_diff(3) += 2. * M_PI;
 
-		Tc += weights(i) * x_diff * z_diff.transpose();
+	    Tc += weights(i) * x_diff * z_diff.transpose();
 
-	}
+    }
 
-	MatrixXd K = Tc * S.inverse();
+    MatrixXd K = Tc * S.inverse();
 
-	VectorXd z_diff = radar_data - z_predicted;
-	while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
-	while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
+    VectorXd z_diff = radar_data - z_predicted;
+    while (z_diff(1) >  M_PI) z_diff(1) -= 2. * M_PI;
+    while (z_diff(1) < -M_PI) z_diff(1) += 2. * M_PI;
 
-	state_ += K * z_diff;
-	covariance_ -= K * S * K.transpose();
+    state_ += K * z_diff;
+    covariance_ -= K * S * K.transpose();
 
     // NIS
     NIS_radar_ = z_diff.transpose() * S.inverse() * z_diff;
