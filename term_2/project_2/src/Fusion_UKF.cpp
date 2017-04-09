@@ -212,9 +212,9 @@ void Fusion_UKF::ctrv_sigma_points_prediction(const MatrixXd& sigma_points,
         	py_predicted = py + v * dt * sin(yaw);
     	}
 
- 	   	v_predicted = v;
- 	   	yaw_predicted = yaw + yaw_d * dt;
-       	yaw_d_predicted = yaw_d;
+        v_predicted = v;
+        yaw_predicted = yaw + yaw_d * dt;
+        yaw_d_predicted = yaw_d;
 
     	// add noise
     	px_predicted += 0.5 * nu_a * pow(dt, 2) * cos(yaw);
