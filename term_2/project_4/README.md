@@ -17,12 +17,14 @@
   * If you run OSX and have homebrew installed you can just run the ./install-mac.sh script to install this
 * Simulator. You can download these from the [project intro page](https://github.com/udacity/CarND-PID-Control-Project/releases) in the classroom.
 
-Build:
+## Build
+
 ```
 mkdir build
 cd build
 cmake ..
 make
+./pid
 ```
 
 ### Discussion
