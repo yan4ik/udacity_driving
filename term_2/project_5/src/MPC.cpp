@@ -52,9 +52,9 @@ class FG_eval {
 
     // COST: difference from reference state
     for (int i = 0; i < N; ++i) {
-      fg[0] += 15 * CppAD::pow(vars[cte_start + i], 2);
+      fg[0] += 50 * CppAD::pow(vars[cte_start + i], 2);
       fg[0] += 10 * CppAD::pow(vars[epsi_start + i], 2);
-      fg[0] += 0.01 * CppAD::pow(vars[v_start + i] - 100, 2);
+      fg[0] += 0.01 * CppAD::pow(vars[v_start + i] - 75 * 0.44704, 2);
     }
 
     // COST: Minimize the use of actuators.
