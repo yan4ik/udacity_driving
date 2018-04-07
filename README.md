@@ -1,3 +1,3 @@
 # udacity_driving
 
-projects
+My soolutions for the first two terms of Udacity Self-Driving Car Nanodegree.
